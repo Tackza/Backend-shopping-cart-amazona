@@ -1,17 +1,13 @@
-let id = 1
 
 const db = require('../models')
 
 const getOrder = async (req, res) => {
-    console.log(req.user)
     const targetOrder = await db.Cart.findAll({ include: { model: db.Product }, where: { user_id: req.user.id } })
-    // const targetOrder = await db.Cart.findAll({ where: {user_id: req.user.id}})
     res.status(200).send(targetOrder)
+    console.log(targetOrder)
 }
 
 const selectOrder = async (req, res) => {
-    // const user_id = req.user.id
-
     const { amount, product_id } = req.body
     console.log(amount)
     console.log(product_id)
@@ -20,7 +16,6 @@ const selectOrder = async (req, res) => {
         amount,
         product_id,
     })
-
         .catch(err => { console.log(err.message) })
     res.status(201).send(newOrder)
 }

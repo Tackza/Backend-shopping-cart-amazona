@@ -6,5 +6,6 @@ const router = express.Router()
 
 router.post('/update', authentication, OrderController.inputOrder)
 router.get('/', authentication, OrderController.getOrder)
+router.get('/all',OrderController.getOrderAll)
 
 module.exports = router

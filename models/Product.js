@@ -5,7 +5,6 @@ module.exports = (sequelize, DataTypes) => {
         name: DataTypes.STRING,
         category: DataTypes.STRING,
         price: DataTypes.FLOAT,
-        amount: DataTypes.FLOAT,
         image: DataTypes.STRING
     }, {
         tableName: "product",

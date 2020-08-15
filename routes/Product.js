@@ -6,6 +6,9 @@ const ProductAll = require('../controller/Product')
 
 router.get('/', ProductAll.getAllProduct)
 router.get('/findByCategory', ProductAll.targetCategory)
+router.post('/',ProductAll.createProduct)
+router.delete('/:id',ProductAll.deleteProduct)
+router.put('/:id',ProductAll.updateProduct)
 
 
-module.exports = router
+module.exports = router 

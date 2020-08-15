@@ -4,13 +4,18 @@ const db = require('../models')
 const getOrder = async (req, res) => {
     const order = await db.HistoryProduct.findAll({
         include: {
-            model: db.Product
-            // include: { model: db.HistoryProduct }
+            model: db.Product,
+            include: { model: db.HistoryProduct }
         },
         where: { user_id: req.user.id }
     })
     console.log(order)
     res.status(200).send(order)
+}
+
+const getOrderAll = async (req, res) => {
+    const order = await db.HistoryProduct.findAll()
+    res.status(201).send(order)
 }
 
 
@@ -29,5 +34,6 @@ const inputOrder = async (req, res) => {
 
 module.exports = {
     inputOrder,
-    getOrder
+    getOrder,
+    getOrderAll
 }
