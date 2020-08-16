@@ -47,7 +47,30 @@ const login = async (req, res) => {
     }
 }
 
+const getPerson = async (req, res) => {
+    const person = await db.User.findAll()
+    if (person) {
+        res.status(201).send(person)
+    } else {
+        res.status(401).send(error)
+    }
+}
+
+const deletePerson = async (req, res) => {
+    const { id } = req.params
+    const targetPerson = await db.User.findOne({where : {id}})
+    console.log(targetPerson)
+    if(targetPerson){
+        await targetPerson.destroy()
+        res.status(201).send({message : `${id} deleted`})
+    }else{
+        res.status(400).send({message : 'not found'})
+    }
+}
+
 module.exports = {
     register,
-    login
+    login,
+    getPerson,
+    deletePerson
 }
